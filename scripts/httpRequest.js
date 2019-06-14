@@ -1,13 +1,8 @@
-let searchQuery;
-const getSearchQuery = () => {
-    searchQuery = document.getElementById('searchQuery').value;
-}
-
 const makeRequest = (search) => {
     return new Promise((res, rej) => {
         let request = new XMLHttpRequest();
 
-        request.onload = () {
+        request.onload = () => {
             if (request.status >= 200 && request.status <= 299) {
                 resolve(request.response);
             } else {
@@ -19,3 +14,8 @@ const makeRequest = (search) => {
         request.send();
     });
 };
+
+const getSearchResult = () => {
+    let searchQuery = document.getElementById('searchQuery').value;
+    makeRequest(searchQuery).then(response => displayResults(response)).catch(error => console.log(error.message));
+}

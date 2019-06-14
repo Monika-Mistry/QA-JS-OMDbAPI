@@ -4,10 +4,10 @@ const makeRequest = (search) => {
 
         request.onload = () => {
             if (request.status === 200) {
-                resolve(request.responseText);
+                res(request.response);
             } else {
                 const reason = new Error("Oops, something went wrong! Error code: " + request.status);
-                reject(reason);
+                rej(reason);
             }
         };
         request.open("GET", "http://www.omdbapi.com/?apikey=13510c0e&s=".concat(search));
@@ -21,10 +21,10 @@ const makePosterRequest = (id) => {
 
         request.onload = () => {
             if (request.status === 200) {
-                resolve(request.responseText);
+                res(request.response);
             } else {
                 const reason = new Error("Oops, something went wrong! Error code: " + request.status);
-                reject(reason);
+                rej(reason);
             }
         };
         request.open("GET", "http://img.omdbapi.com/?apikey=13510c0e&i=".concat(id));
@@ -34,5 +34,6 @@ const makePosterRequest = (id) => {
 
 const getSearchResult = () => {
     let searchQuery = document.getElementById('searchQuery').value;
-    makeRequest(searchQuery).then(response => displayResults(response)).catch(error => console.log(error.message));
+    makeRequest(searchQuery).then(response => console.log(response)).catch(error => console.log(error.message));
+    // makeRequest(searchQuery).then(response => displayResults(response)).catch(error => console.log(error.message));
 }

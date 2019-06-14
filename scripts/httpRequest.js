@@ -3,17 +3,34 @@ const makeRequest = (search) => {
         let request = new XMLHttpRequest();
 
         request.onload = () => {
-            if (request.status >= 200 && request.status <= 299) {
-                resolve(request.response);
+            if (request.status === 200) {
+                resolve(request.responseText);
             } else {
                 const reason = new Error("Oops, something went wrong! Error code: " + request.status);
                 reject(reason);
             }
         };
-        request.open("GET", "http://www.omdbapi.com/?apikey=13510c0e".concat(search));
+        request.open("GET", "http://www.omdbapi.com/?apikey=13510c0e&s=".concat(search));
         request.send();
     });
 };
+
+const makePosterRequest = (id) => {
+    return new Promise((res, rej) => {
+        let request = new XMLHttpRequest();
+
+        request.onload = () => {
+            if (request.status === 200) {
+                resolve(request.responseText);
+            } else {
+                const reason = new Error("Oops, something went wrong! Error code: " + request.status);
+                reject(reason);
+            }
+        };
+        request.open("GET", "http://img.omdbapi.com/?apikey=13510c0e&i=".concat(id));
+        request.send();
+    });
+}
 
 const getSearchResult = () => {
     let searchQuery = document.getElementById('searchQuery').value;

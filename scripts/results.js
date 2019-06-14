@@ -49,6 +49,7 @@ const displayResults = results => {
                     sessionStorage.setItem('year', val.Year);
                    // sessionStorage.setItem('rated', val.Ratings[0].Value);
                     sessionStorage.setItem('poster', val.Poster);
+                    window.location = "record.html";
                 });
                 cell.append(btn)
             }

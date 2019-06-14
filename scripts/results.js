@@ -1,18 +1,24 @@
 
 const headers = ['Title', 'Year', 'Type', 'More Details']
+let records;
 
 const getRecord = title => records.filter(val => val.Title === title).reduce(acc => acc);
 
 const displayResults = results => {
-   // console.log(results);
+    // console.log(results);
     let resultObj = JSON.parse(results);
     //console.log(resultObj);
-    console.log(resultObj.Search);
-    let records = resultObj.Search;
-    console.log(records);
+    // console.log(resultObj.Search);
+    records = resultObj.Search;
+    // console.log(records);
 
     let table = document.getElementById('resultTable');
     let tbody = document.getElementById('resultBody');
+
+    //remove any rows except header
+    for (var i = table.rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
 
     if (tbody != null) {
         table.removeChild(tbody);
@@ -20,6 +26,7 @@ const displayResults = results => {
     }
 
     tbody = table.createTBody();
+
 
     //create table rows
     records.forEach(val => {
@@ -29,16 +36,28 @@ const displayResults = results => {
             let cell = row.insertCell();
             let content;
             if (i < 3) {
-                console.log(val[headers[i]]);val[headers[i]]
+                // console.log(val[headers[i]]); val[headers[i]]
                 content = document.createTextNode(val[headers[i]]);
                 cell.append(content);
             } else {
-                cell.append("detail");
+                //create button for more details
+                let btn = document.createElement('input');
+                btn.type = "button";
+                btn.value = "Details";
+                btn.addEventListener("click", buttonClick = () => {
+                    sessionStorage.setItem('title', val.Title);
+                    sessionStorage.setItem('year', val.Year);
+                   // sessionStorage.setItem('rated', val.Ratings[0].Value);
+                    sessionStorage.setItem('poster', val.Poster);
+                    window.location = "record.html";
+                });
+                cell.append(btn)
             }
 
         }
 
     });
 
-
 };
+
+

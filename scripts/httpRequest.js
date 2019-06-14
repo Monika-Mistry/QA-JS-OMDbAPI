@@ -1,3 +1,8 @@
+let searchQuery;
+const getSearchQuery = () => {
+    searchQuery = document.getElementById('searchQuery').value;
+}
+
 const makeRequest = (search) => {
     return new Promise((res, rej) => {
         let request = new XMLHttpRequest();

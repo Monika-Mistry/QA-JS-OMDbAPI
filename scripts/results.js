@@ -21,8 +21,6 @@ const displayResults = results => {
 
     tbody = table.createTBody();
 
-
-
     //create table rows
     records.forEach(val => {
         let row = tbody.insertRow();
@@ -31,15 +29,15 @@ const displayResults = results => {
             let cell = row.insertCell();
             let content;
             if (i < 3) {
-                console.log(val[headers[i]]); val[headers[i]]
+                // console.log(val[headers[i]]); val[headers[i]]
                 content = document.createTextNode(val[headers[i]]);
                 cell.append(content);
             } else {
                 //create button for more details
                 let btn = document.createElement('input');
                 btn.type = "button";
-                btn.value = "Details"
-
+                btn.value = "Details";
+                btn.onclick = "buttonClick()";
                 cell.append(btn)
             }
 
@@ -47,5 +45,9 @@ const displayResults = results => {
 
     });
 
-
 };
+
+const buttonClick = () => {
+sessionStorage.setItem('poster', val.Poster);
+window.location = "detail.html";
+}

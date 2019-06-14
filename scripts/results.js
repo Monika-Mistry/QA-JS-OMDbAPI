@@ -44,7 +44,7 @@ const displayResults = results => {
                 let btn = document.createElement('input');
                 btn.type = "button";
                 btn.value = "Details";
-                btn.onclick = "buttonClick()";
+                //btn.addEventListener("click", buttonClick());
                 cell.append(btn)
             }
 
@@ -54,7 +54,3 @@ const displayResults = results => {
 
 };
 
-const buttonClick = () => {
-    sessionStorage.setItem('poster', val.Poster);
-    window.location = "detail.html";
-}

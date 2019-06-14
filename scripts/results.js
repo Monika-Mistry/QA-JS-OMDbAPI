@@ -44,7 +44,12 @@ const displayResults = results => {
                 let btn = document.createElement('input');
                 btn.type = "button";
                 btn.value = "Details";
-                //btn.addEventListener("click", buttonClick());
+                btn.addEventListener("click", buttonClick = () => {
+                    sessionStorage.setItem('title', val.Title);
+                    sessionStorage.setItem('year', val.Year);
+                   // sessionStorage.setItem('rated', val.Ratings[0].Value);
+                    sessionStorage.setItem('poster', val.Poster);
+                });
                 cell.append(btn)
             }
 
@@ -53,4 +58,5 @@ const displayResults = results => {
     });
 
 };
+
 

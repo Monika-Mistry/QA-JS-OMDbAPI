@@ -1,5 +1,6 @@
 
 const headers = ['Title', 'Year', 'Type', 'More Details']
+let records;
 
 const getRecord = title => records.filter(val => val.Title === title).reduce(acc => acc);
 
@@ -8,11 +9,16 @@ const displayResults = results => {
     let resultObj = JSON.parse(results);
     //console.log(resultObj);
     // console.log(resultObj.Search);
-    let records = resultObj.Search;
+    records = resultObj.Search;
     // console.log(records);
 
     let table = document.getElementById('resultTable');
     let tbody = document.getElementById('resultBody');
+
+    //remove any rows except header
+    for (var i = table.rows.length - 1; i > 0; i--) {
+        table.deleteRow(i);
+    }
 
     if (tbody != null) {
         table.removeChild(tbody);
@@ -20,6 +26,7 @@ const displayResults = results => {
     }
 
     tbody = table.createTBody();
+
 
     //create table rows
     records.forEach(val => {
@@ -48,6 +55,6 @@ const displayResults = results => {
 };
 
 const buttonClick = () => {
-sessionStorage.setItem('poster', val.Poster);
-window.location = "detail.html";
+    sessionStorage.setItem('poster', val.Poster);
+    window.location = "detail.html";
 }

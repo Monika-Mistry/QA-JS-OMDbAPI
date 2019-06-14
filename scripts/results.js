@@ -8,7 +8,16 @@ const displayResults = results => {
 
     records.concat(resultObj);
 
-    let table = document.getElementById('resultTable')
+    let table = document.getElementById('resultTable');
+    let tbody = document.getElementById('resultBody');
+
+    if(tbody != null){
+        table.removeChild(tbody);
+        tbody = null;
+    }
+
+    tbody = document.createElement('tbody');
+    table.appendChild(tbody);
 
 
 

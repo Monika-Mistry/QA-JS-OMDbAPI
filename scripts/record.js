@@ -7,11 +7,15 @@ const getValues = () => {
 
 const home = () => {
     window.location = "index.html";
+    posterHistory();
+    
+};
 
+const posterHistory = () => {
     let his = document.getElementById('history');
 
     let poster = document.createElement('img');
     poster.src = sessionStorage.getItem('poster');
 
     his.appendChild(poster);
-};
+}

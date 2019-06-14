@@ -34,6 +34,6 @@ const makePosterRequest = (id) => {
 
 const getSearchResult = () => {
     let searchQuery = document.getElementById('searchQuery').value;
-    makeRequest(searchQuery).then(response => console.log(response)).catch(error => console.log(error.message));
-    // makeRequest(searchQuery).then(response => displayResults(response)).catch(error => console.log(error.message));
+    //makeRequest(searchQuery).then(response => console.log(response)).catch(error => console.log(error.message));
+    makeRequest(searchQuery).then(response => displayResults(response)).catch(error => console.log(error.message));
 }
